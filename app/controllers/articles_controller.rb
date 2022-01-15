@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
+    before_action :set_article, only:[:show,:update,:destroy,:edit]
+
     def show
-        @article=Article.find(params[:id])
     end
 
     def index
@@ -12,15 +13,14 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article=Article.find(params[:id])
     end
 
     def create
-        @article=Article.new(params.require(:article).permit(:title,:descrition,:author))
+        @article=Article.new(article_params)
         respond_to do |format|
             if @article.save
-                flash[:notice] = "Article Created Successfully"
-                redirect_to @article  #shorthand:- redirect_to @article
+                format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
+                format.json { render :show, status: :ok, location: @article }
             else
                 format.html { render :new, status: :unprocessable_entity }
                 format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -29,11 +29,11 @@ class ArticlesController < ApplicationController
     end
 
     def update
-        @article=Article.find(params[:id])
+        
         respond_to do |format|
-            if @article.update(params.require(:article).permit(:title,:descrition,:author))
-                flash[:notice]="Article edited successfully"
-                redirect_to @article
+            if @article.update(article_params)
+                format.html { redirect_to article_url(@article), notice: "Article was successfully edited." }
+                format.json { render :show, status: :ok, location: @article }
             else
                 format.html { render :edit, status: :unprocessable_entity }
                 format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -42,8 +42,18 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article=Article.find(params[:id])
         @article.destroy
+        flash[:notice]="Article successfully Deleted"
         redirect_to articles_path
+    end
+
+    private
+
+    def set_article
+        @article=Article.find(params[:id])
+    end
+
+    def article_params
+        params.require(:article).permit(:title,:descrition,:author)
     end
 end
