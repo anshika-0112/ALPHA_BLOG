@@ -1,5 +1,7 @@
 <h1>Article Description</h1>
-
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <p><strong>Title: </strong><%= @article.title %></p>
 <p><strong>Description: </strong><%= @article.descrition %></p>
 <p><strong>Author: </strong><%= @article.author %></p>
