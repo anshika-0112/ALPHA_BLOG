@@ -1,4 +1,4 @@
 <h1>Edit Article</h1>
 
 <%= render 'form'%>
-<%= button_to "Delete",  article_path, method: :delete %>
+<%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

@@ -17,34 +17,27 @@ class ArticlesController < ApplicationController
 
     def create
         @article=Article.new(article_params)
-        respond_to do |format|
             if @article.save
-                format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
-                format.json { render :show, status: :ok, location: @article }
+                flash[:notice]="Article created successfully"
+                redirect_to @article
             else
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @article.errors, status: :unprocessable_entity }
+                render :new,status: :unprocessable_entity
             end
-        end
     end
 
     def update
-        
-        respond_to do |format|
             if @article.update(article_params)
-                format.html { redirect_to article_url(@article), notice: "Article was successfully edited." }
-                format.json { render :show, status: :ok, location: @article }
+                flash[:notice]="Article edited successfully"
+                redirect_to @article
             else
-                format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @article.errors, status: :unprocessable_entity }
+                render :edit,status: :unprocessable_entity
             end
-        end
     end
 
     def destroy
         @article.destroy
         flash[:notice]="Article successfully Deleted"
-        redirect_to articles_path
+        redirect_to articles_path,status: :see_other
     end
 
     private
