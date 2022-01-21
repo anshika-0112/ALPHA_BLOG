@@ -1,0 +1,10 @@
+<h1>User Detail</h1>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<p><strong>Username: </strong><%= @user.username %></p>
+<p><strong>Email: </strong><%= @user.email %></p>
+
+<%= link_to "Edit this User", path=edit_user_path %> |
+<%= link_to "Back to Users", path=users_path %>
+<%= link_to "Destroy", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
