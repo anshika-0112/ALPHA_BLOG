@@ -23,7 +23,7 @@
     </div>
 
     <div>
-        <%= form.submit "Sign Up"%>
+        <%= form.submit (@user.new_record? ? "Sign Up" : "Update Account")%>
     </div>
 <% end %>
 <%= link_to "Back to Users", path=users_path %> |
