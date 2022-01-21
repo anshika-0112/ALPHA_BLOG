@@ -1,9 +1,9 @@
-<h1>User Detail</h1>
+<h1 class="text-center mt-4"><%= @user.username%>'s profile</h1>
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p><strong>Username: </strong><%= @user.username %></p>
-<p><strong>Email: </strong><%= @user.email %></p>
+<h3 class="text-center mt-4">Articles</h3>
+<%= render 'articles/article' %>
 
 <%= link_to "Edit this User", path=edit_user_path %> |
 <%= link_to "Back to Users", path=users_path %>
