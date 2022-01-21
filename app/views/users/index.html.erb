@@ -1,0 +1,22 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<% @users.each do |user| %>
+    <div class="container" id="user-card">
+        <div class="card text-center">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= user.username%></h5>
+                <p class="card-text"><%= user.email%></p>
+                <%= link_to "Show", user_path(user),class:"btn btn-primary"%>
+                <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary"%>
+                <%= link_to "Destroy", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"btn btn-primary" %>
+
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+<% end%>

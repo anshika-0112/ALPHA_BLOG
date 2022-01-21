@@ -33,3 +33,7 @@
   background-color: rgb(206, 176, 223) !important;
   padding: 50px;
 }
+
+#user-card {
+  margin: 50px;
+}
