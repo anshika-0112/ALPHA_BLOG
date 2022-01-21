@@ -3,7 +3,13 @@
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 <h3 class="text-center mt-4">Articles</h3>
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false%>
+</div>
 <%= render 'articles/article' %>
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false%>
+</div>
 
 <%= link_to "Edit this User", path=edit_user_path %> |
 <%= link_to "Back to Users", path=users_path %>
