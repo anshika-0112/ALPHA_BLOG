@@ -1,0 +1,35 @@
+#homeContainer {
+  background-color: rgb(206, 176, 223);
+}
+
+.jumbotron {
+  padding: 50px;
+}
+
+.btn-primary {
+  color: rgb(238, 226, 235);
+  background: black;
+  border: none;
+}
+
+.btn-primary:hover {
+  color: black;
+  background: rgb(238, 226, 235);
+}
+
+#article-card {
+  margin: 50px;
+}
+
+.card-header {
+  background-color: rgb(238, 226, 235);
+}
+
+.card-footer {
+  background-color: rgb(238, 226, 235);
+}
+
+.card-body {
+  background-color: rgb(206, 176, 223) !important;
+  padding: 50px;
+}
