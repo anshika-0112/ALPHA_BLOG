@@ -81,3 +81,7 @@
 .flickr_pagination .next_page {
   margin-left: 1em;
 }
+
+#user-profile {
+  text-align: center;
+}

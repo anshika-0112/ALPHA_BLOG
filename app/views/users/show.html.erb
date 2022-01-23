@@ -1,13 +1,16 @@
-<h1 class="text-center mt-4"><%= @user.username%>'s profile</h1>
-<h3 class="text-center mt-4">Articles</h3>
-<div class="flickr_pagination">
-    <%= will_paginate @articles, :container => false%>
+<div id="user-profile">
+    <h1 class="text-center mt-4"><%= @user.username%>'s profile</h1>
+    <% if logged_in? && @user==current_user%>
+        <%= link_to "Edit this User", path=edit_user_path,class:"btn btn-primary" %>
+        <%= link_to "Delete", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"btn btn-primary" %>
+    <%end%>
+    <h3 class="text-center mt-4">Articles</h3>
+    <div class="flickr_pagination">
+        <%= will_paginate @articles, :container => false%>
+    </div>
+    <%= render 'articles/article' %>
+    <div class="flickr_pagination">
+        <%= will_paginate @articles, :container => false%>
+    </div>
+    <%= link_to "Back to Users", path=users_path %>
 </div>
-<%= render 'articles/article' %>
-<div class="flickr_pagination">
-    <%= will_paginate @articles, :container => false%>
-</div>
-
-<%= link_to "Edit this User", path=edit_user_path %> |
-<%= link_to "Back to Users", path=users_path %>
-<%= link_to "Destroy", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
