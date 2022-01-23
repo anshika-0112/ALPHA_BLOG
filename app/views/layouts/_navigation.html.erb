@@ -20,7 +20,9 @@
           Dropdown
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Create Article", path=new_article_path, class:"dropdown-item"%>
+          <% if logged_in? %>
+            <%= link_to "Create Article", path=new_article_path, class:"dropdown-item"%>
+          <%end%>
           <li><a class="dropdown-item" href="#">Another action</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Something else here</a></li>

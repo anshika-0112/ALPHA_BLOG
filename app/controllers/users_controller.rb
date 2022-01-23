@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :set_user, only:[:edit,:update,:show]
+    before_action :set_user, only:[:edit,:update,:show,:destroy]
     def new
         @user=User.new
     end
@@ -33,6 +33,13 @@ class UsersController < ApplicationController
         else
             render :edit, status: :unprocessable_entity
         end
+    end
+
+    def destroy
+        @user.destroy
+        session[:user_id]=nil
+        flash[:notice]="User deleted successfully"
+        redirect_to articles_path,status: :see_other
     end
 
     private
