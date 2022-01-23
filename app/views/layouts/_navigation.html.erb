@@ -15,26 +15,25 @@
       <li class="nav-item">
       <%= link_to "About", path=about_path, class:"nav-link"%>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if logged_in? %>
-            <%= link_to "Create Article", path=new_article_path, class:"dropdown-item"%>
-          <%end%>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </li>
+      
 
 
     </ul>
     <% if logged_in? %>
-      <%= link_to 'Log Out', logout_path, class:"btn btn-outline-success",  data: { turbo_method: :delete}%>
-      <%= link_to current_user.username, user_path(current_user), class:"btn btn-outline-success"%>
-  <%else%>
+      <li class="nav-item dropdown list-unstyled">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= "(Admin) " if current_user.admin %><%=current_user.username%>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to "View Profile", path=user_path(current_user), class:"dropdown-item"%></li>
+            <%= link_to "Edit Profile", path=edit_user_path(current_user), class:"dropdown-item"%>
+            <li><%= link_to "Delete Profile", path=user_path(current_user), class:"dropdown-item",  data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}%></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to "Create Article", path=new_article_path, class:"dropdown-item"%></li>
+          </ul>
+      </li>
+      <%= link_to 'Log Out', logout_path, class:"btn btn-outline-success",  data: { turbo_method: :delete}%>     
+    <%else%>
       <%= link_to 'Log In', login_path,class:"btn btn-outline-success"%>
       <%=link_to "Sign Up",path="/signup",class:"btn btn-outline-success"%>
   <% end%>
