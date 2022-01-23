@@ -4,7 +4,7 @@
 <p><strong>Created By: </strong><%= @article.user.username if @article.user %></p>
 
 <%= link_to "Back to Articles", path=articles_path %>
-<% if logged_in? && @article.user==current_user%>
+<% if logged_in? && (@article.user==current_user || current_user.admin?)%>
     <%= link_to "Edit this Article", path=edit_article_path %> |
     <%= link_to "Delete", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <%end%>

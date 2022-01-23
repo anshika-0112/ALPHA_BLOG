@@ -1,6 +1,6 @@
 <div id="user-profile">
     <h1 class="text-center mt-4"><%= @user.username%>'s profile</h1>
-    <% if logged_in? && @user==current_user%>
+    <% if logged_in? && (@user==current_user || current_user.admin)%>
         <%= link_to "Edit this User", path=edit_user_path,class:"btn btn-primary" %>
         <%= link_to "Delete", user_path(@user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"btn btn-primary" %>
     <%end%>

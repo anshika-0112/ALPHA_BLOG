@@ -9,7 +9,7 @@
                     <h5 class="card-title"><%= user.username%></h5>
                     <p class="card-text"><%= user.email%></p>
                     <%= link_to "Show", user_path(user),class:"btn btn-primary"%>
-                    <% if logged_in? && user==current_user%>
+                    <% if logged_in? && (user==current_user || current_user.admin?)%>
                         <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary"%>
                         <%= link_to "Delete", user_path(user), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class:"btn btn-primary" %>
                     <%end%>
