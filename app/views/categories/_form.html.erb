@@ -1,11 +1,13 @@
-<% if @category.errors.any? %>
-    <h2>prohibited this article from being saved:</h2>
-    <ul>
-    <% @category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="alert">
+    <% if @category.errors.any? %>
+        <h2 class="alert-heading">prohibited this article from being saved:</h2>
+        <ul>
+            <% @category.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
     <% end %>
-    </ul>
-<% end %>
+</div>
 <%= form_with model: @category, local:true  do |form| %>
     <div>
         <%= form.label :name, style: "display: block" %>
