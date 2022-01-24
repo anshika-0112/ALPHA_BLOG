@@ -22,5 +22,7 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
             post categories_url, params:{category:{name:" "}}
         end
         assert_match "errors",response.body
+        assert_select 'div.alert'
+        assert_select 'h2.alert-heading'
     end
 end
